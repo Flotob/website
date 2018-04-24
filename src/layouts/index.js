@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import '../assets/scss/main.scss'
+import YouTube from 'react-youtube'
 
+import '../assets/scss/main.scss'
 import Footer from '../components/Footer'
 
 class Template extends React.Component {
@@ -26,12 +27,34 @@ class Template extends React.Component {
 
   render() {
     const { children } = this.props
+    const videoOptions = {
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1,
+        controls: 0,
+        rel: 0,
+        showinfo: 0,
+        loop: 1,
+        start: 13
+      }
+    }
 
     return (
       <div className={`body ${this.state.loading}`}>
         <div id="wrapper">
 
           {children()}
+
+          <div className="video-background">
+            <div className="video-foreground">
+              <YouTube
+                videoId="7o0EOnQrhhM"
+                opts={videoOptions}
+                className="video-iframe"
+                onReady={this._onReady}
+                onEnd={this._onEnd}
+              />
+            </div>
+          </div>
           <Footer />
         </div>
       </div>

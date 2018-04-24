@@ -137,7 +137,6 @@ class Index extends React.Component {
           </section>
 
         </div>
-
       </div>
     )
   }
